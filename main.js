@@ -17,9 +17,15 @@ $(document).ready(function () {
 
     var words = ['jalepeno', 'bladerunner', 'bison', 'screwdriver', 'cat']
     var letters = []
-    var guess = null
     var guesses = 6
+    var guess = prompt("Guess a letter...",)
 
+    $('#guess').on('change', function() {
+        var text = $('#guess').val()
+        debugger
+    })
+
+    
     var hangman = ['-----------------------------',
                    '              |              ',
                    '              0              ',
@@ -50,8 +56,8 @@ $(document).ready(function () {
         })
     }
 
-    function drawPart() {
-         guesses--
+
+    function drawPart(guesses) {
          switch(guesses){
          case 6:
          return console.log(hangman[0])
@@ -71,12 +77,20 @@ $(document).ready(function () {
          return
          }
     }
-
-    $(":input").css("background-color", "red");
-//********************************** */
-guess = "a"
-lettrCheck((arrWord(getWord())))
-guesses = 5
-drawPart()
     
+    
+
+// $("#guess").on('keyup', function(){
+ 
+
+//    $('#add').on('click', function() {
+//     var li = '<li>' + $plan.val() + ' - ' + $price.text() + '</li>'
+//     $('#in_cart').append(li)
+//   })
+
+//    console.log(guess)
+// }
+
+//********************************** */
+
 })
