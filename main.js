@@ -18,6 +18,16 @@ $(document).ready(function () {
     var words = ['jalepeno', 'bladerunner', 'bison', 'screwdriver', 'cat']
     var letters = []
     var guess = null
+    var guesses = 6
+
+    var hangman = ['-----------------------------',
+                   '              |              ',
+                   '              0              ',
+                   '             /               ',
+                   '             /|              ',
+                   '             /|\             ',
+                   '             /               ',
+                   '             /\              ']
 
 
     function getWord() {
@@ -40,11 +50,33 @@ $(document).ready(function () {
         })
     }
 
+    function drawPart() {
+         guesses--
+         switch(guesses){
+         case 6:
+         return console.log(hangman[0])
+         case 5:
+         return console.log(hangman[0] + "\n" + hangman[1] + "\n" + hangman[2])
+         case 4:
+         return console.log(hangman[0] + "\n" + hangman[1]+ "\n" + hangman[2] + "\n" + hangman[3])
+         case 3:
+         return console.log(hangman[0] + "\n" + hangman[1]+ "\n" + hangman[2] + "\n" + hangman[4])
+         case 2:
+         return console.log(hangman[0] + "\n" + hangman[1]+ "\n" + hangman[2] + "\n" + hangman[5])
+         case 1:
+         return console.log(hangman[0] + "\n" + hangman[1]+ "\n" + hangman[2] + "\n" + hangman[5] + "\n" + hangman[6])
+         case 1:
+         return console.log(hangman[0] + "\n" + hangman[1]+ "\n" + hangman[2] + "\n" + hangman[5] + "\n" + hangman[7])
+         default:
+         return
+         }
+    }
 
-
-
+    $(":input").css("background-color", "red");
 //********************************** */
 guess = "a"
 lettrCheck((arrWord(getWord())))
+guesses = 5
+drawPart()
     
 })
