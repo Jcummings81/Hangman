@@ -13,49 +13,61 @@
     //    -otherwise a new body part is drawn and number of guesses is dropped by 1
     //Draw part
     //    -draws a newline? of hanging man
+
+
 $(document).ready(function () {
 
-    var words = ['jalepeno', 'bladerunner', 'bison', 'screwdriver', 'cat']
+    var words = ["jalepeno", "bladerunner", "bison", "screwdriver", "cat"]
     var letters = []
     var guesses = 6
-    var guess = prompt("Guess a letter...",)
-
-    $('#guess').on('change', function() {
-        var text = $('#guess').val()
-        debugger
-    })
+    var points = 0
+    var hangman = ['-----------------------------',
+    '              |              ',
+    '              0              ',
+    '             /               ',
+    '             /|              ',
+    '             /|\             ',
+    '             /               ',
+    '             /\              ']
 
     
-    var hangman = ['-----------------------------',
-                   '              |              ',
-                   '              0              ',
-                   '             /               ',
-                   '             /|              ',
-                   '             /|\             ',
-                   '             /               ',
-                   '             /\              ']
+   function getGuess() {
+    $('#guess').on('change', function() {
+        guess = $('#guess').val()
+        guess = guess.split("")
+        if (guess.length > 1)
+         return console.log("Invalid Entry, Please Type a Single Letter")
+         else
+         return guess  
+    })
+}
+
 
 
     function getWord() {
-    return words[Math.floor(Math.random() * words.length)]
+    letters = arrWord(words[Math.floor(Math.random() * words.length)])
+    console.log(letters)
+    return letters
     }
     
     function arrWord(wrd) {
-        letters = wrd.split('')
-        return letters
+        return wrd.split("")
+        
     }
-   
-    function lettrCheck(arr){
-    $.each(arr, function(i, value){
-        switch(value) {
-            case guess:
-              return console.log('worked')
-            default:
-            return console.log('nope')
+   function lettrCheck(){
+    $.each(letters, function(k,v) {
+        if (guess == v) {
+             points++
         }
-        })
+        console.log(points); 
+      });
     }
-
+    
+    
+    function wordBoard() {
+        letters.forEach()
+            console.log("_")
+    }
 
     function drawPart(guesses) {
          switch(guesses){
@@ -77,20 +89,13 @@ $(document).ready(function () {
          return
          }
     }
-    
-    
 
-// $("#guess").on('keyup', function(){
- 
+    $('#submit').on('click', function (){
 
-//    $('#add').on('click', function() {
-//     var li = '<li>' + $plan.val() + ' - ' + $price.text() + '</li>'
-//     $('#in_cart').append(li)
-//   })
+        getGuess()
+        getWord()
+        lettrCheck()
+            })
 
-//    console.log(guess)
-// }
-
-//********************************** */
-
-})
+//********************************** */    
+    })
