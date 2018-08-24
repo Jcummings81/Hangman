@@ -37,11 +37,17 @@ $(document).ready(function () {
         $('#submit').on('click', function() {
             guess  = $('#guess').val()
             guess = guess.split("")
+            if (guess.length > 1){
+               console.log("invalid")
+               
+            }else{
+               guess
+            }
             console.log(guess)
             console.log(points)
         })
+        return guess
     }
-
         function getWord() {
             letters = arrWord(words[Math.floor(Math.random() * words.length)])
             console.log(letters)
@@ -52,11 +58,13 @@ $(document).ready(function () {
             return wrd.split("")
         
         }
+        function storeWord() {
+            word = letters
+        }
 
-
-        function lettrCheck(arr){
+        function lettrCheck(arr, ch){
             $.each(arr, function(k,v) {
-                if (guess == v) {
+                if ( ch == v) {
                     points += 1
                 }else{
                     points
@@ -91,6 +99,9 @@ $(document).ready(function () {
          return hangman[0]
          }
     }
+
+lettrCheck(getGuess, getWord)
+
 
 });
 
